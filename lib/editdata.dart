@@ -21,14 +21,14 @@ class _EditDataState extends State<EditData> {
 
 
   void editData() {
-    var url="http://10.0.2.2/my_store/editdata.php";
+    var url="http://192.168.100.8/api/editdata.php";
     http.post(url,body: {
       "id": widget.list[widget.index]['id'],
       "itemcode": controllerCode.text,
       "itemname": controllerName.text,
       "price": controllerPrice.text,
       "stock": controllerStock.text
-    });
+    }).whenComplete(() => print("Edited"));
   }
 
 

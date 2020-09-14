@@ -3,8 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import './Detail.dart';
 import './adddata.dart';
+import 'detail.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -20,7 +20,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Future<List> getData() async {
-    final response = await http.get("http://10.0.2.2/my_store/getdata.php");
+    final response = await http.get("http://192.168.100.8/api/getdata.php");
     return json.decode(response.body);
   }
 
@@ -68,6 +68,7 @@ class ItemList extends StatelessWidget {
         return new Container(
           padding: const EdgeInsets.all(10.0),
           child: new GestureDetector(
+          
             onTap: ()=>Navigator.of(context).push(
               new MaterialPageRoute(
                 builder: (BuildContext context)=> new Detail(list:list , index: i,)

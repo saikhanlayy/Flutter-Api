@@ -7,23 +7,21 @@ class AddData extends StatefulWidget {
 }
 
 class _AddDataState extends State<AddData> {
+  TextEditingController controllerCode = new TextEditingController();
+  TextEditingController controllerName = new TextEditingController();
+  TextEditingController controllerPrice = new TextEditingController();
+  TextEditingController controllerStock = new TextEditingController();
 
+  void addData() {
+    var url = "http://192.168.100.8/api/adddata.php";
 
-TextEditingController controllerCode = new TextEditingController();
-TextEditingController controllerName = new TextEditingController();
-TextEditingController controllerPrice = new TextEditingController();
-TextEditingController controllerStock = new TextEditingController();
-
-void addData(){
-  var url="http://10.0.2.2/my_store/adddata.php";
-
-  http.post(url, body: {
-    "itemcode": controllerCode.text,
-    "itemname": controllerName.text,
-    "price": controllerPrice.text,
-    "stock": controllerStock.text
-  });
-}
+    http.post(url, body: {
+      "itemcode": controllerCode.text,
+      "itemname": controllerName.text,
+      "price": controllerPrice.text,
+      "stock": controllerStock.text
+    }).whenComplete(() => print("Add Data"));
+  }
 
   @override
   Widget build(BuildContext context) {
